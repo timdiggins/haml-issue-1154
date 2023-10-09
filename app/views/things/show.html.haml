@@ -1,0 +1,12 @@
+%p{style: "color: green"}= notice
+= render @thing
+%div
+  = link_to "View raw", thing_path(@thing, format: "raw")
+  |
+  #{link_to "Download .xls", thing_path(@thing, format: "xls")}
+  |
+  #{link_to "Edit this thing", edit_thing_path(@thing)}
+  |
+  #{link_to "Back to things", things_path}
+
+  #{button_to "Destroy this thing", @thing, method: :delete}
