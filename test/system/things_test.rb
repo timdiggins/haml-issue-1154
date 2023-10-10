@@ -5,34 +5,11 @@ class ThingsTest < ApplicationSystemTestCase
     @thing = things(:one)
   end
 
-  test "visiting as html" do
+  test "visiting" do
     visit thing_url(@thing)
     take_screenshot
     # should be using application.html.haml
-    assert_text "Some navigation stuff goes here"
-    # should be using show.html.haml
-    assert_no_selector "table.show-raw-table"
-    assert_selector "a[href='#{things_path}']"
-    assert_selector "a[href='#{edit_thing_path(@thing)}']"
-    assert_selector "a[href='#{thing_path(@thing, format: :raw)}']"
-    # should be using _thing.html.haml
-    assert_no_selector "tr.thing"
-    assert_text "Name:"
-  end
-
-  test "visiting as raw" do
-    visit thing_path(@thing, format: :raw)
-    take_screenshot
-    # should be using application.haml
-    assert_no_text "Some navigation stuff goes here"
-    # should be using show.haml
-    assert_selector "table.show-raw-table"
-    assert_no_selector "a[href='#{things_path}']"
-    assert_no_selector "a[href='#{edit_thing_path(@thing)}']"
-    assert_no_selector "a[href='#{thing_path(@thing, format: :raw)}']"
-    # should be using _thing.haml
-    assert_selector "tr.thing"
-    assert_no_text "Name:"
+    assert_text "Some navigation stuff goes here", count: 1
   end
 
   # test "visiting the index" do

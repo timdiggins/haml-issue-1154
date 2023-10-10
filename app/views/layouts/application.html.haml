@@ -7,7 +7,11 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_importmap_tags
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
     %div{style: "background: pink; margin: -10px; padding: 10px;"} Some navigation stuff goes here (format html)
-    = yield
+    .min-h-full
+      = turbo_frame_tag "modal"
+      = turbo_frame_tag "snackbar" do
+        = render("snackbar", message: flash[:notice]) if flash[:notice].present?
+      = yield
